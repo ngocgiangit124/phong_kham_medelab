@@ -76,7 +76,7 @@ class BacSyController extends Controller
     }
     public function getThongTin()
     {
-        $user=User::where('user_level',2)->paginate(10);
+        $user=User::where('user_level',2)->orderBy('id', 'desc')->paginate(10);
 
         return view('admin.bacsy.thongtin',['user'=>$user]);
     }

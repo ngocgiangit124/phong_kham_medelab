@@ -65,7 +65,6 @@
                                                     {{'Bác Sỹ'}}
                                                     @endif
 
-
                                     </td>
                                     <td>@if($u->user_trangthai==0)
                                     {{'Không'}}

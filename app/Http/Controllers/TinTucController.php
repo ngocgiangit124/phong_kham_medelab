@@ -78,7 +78,7 @@ class TinTucController extends Controller
             $tintuc = TinTuc::find($id);
         $this->validate($request,[
             'txtTieuDe'=>'required|min:3|max:500',
-            'txtMoTa'=>'required|min:3|max:500',
+            'txtMoTa'=>'required|min:3',
             'txtNoiDung'=>'required',
             'txtTacGia'=>'required|min:3|max:200'
         ],[
@@ -87,11 +87,10 @@ class TinTucController extends Controller
             'txtTieuDe.max'=>'Tên người phải ít hơn 500 ký tự',
             'txtMoTa.required'=>'Bạn chưa nhập Tên',
             'txtMoTa.min'=>'Tên người nhiều  hơn 3 ký tự',
-            'txtMoTa.max'=>'Tên người phải ít hơn 200 ký tự',
             'txtTacGia.required'=>'Bạn chưa nhập Tên',
             'txtTacGia.min'=>'Tên người nhiều  hơn 3 ký tự',
             'txtTacGia.max'=>'Tên người phải ít hơn 200 ký tự',
-            'txtNoiDung.required'=>'Bạn chưa nhập Tên'
+            'txtNoiDung.required'=>'Bạn chưa nhập nội dung'
 
         ]);
         $tintuc -> tintuc_tieude = $request->txtTieuDe;

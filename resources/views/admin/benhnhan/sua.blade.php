@@ -4,13 +4,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Thêm
+            Sửa Thông tin
             <small>Bệnh nhân</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="admin"><i class="fa fa-dashboard"></i>Trang Chủ</a></li>
             <li><a href="admin/benhnhan/them">Bệnh nhân</a></li>
-            <li class="active">Thêm</li>
+            <li class="active">sửa</li>
         </ol>
     </section>
     <section class="content">
@@ -101,7 +101,7 @@
                     <div class="box box-warning">
                         <div class="box-header with-border">
                             <!-- /.box-header -->
-                            <h3 class="box-title">Thêm hồ Sơ bệnh nhân</h3>
+                            <h3 class="box-title">Hồ Sơ bệnh nhân</h3>
                         </div>
                         <!-- /.box-body -->
                         <div class="box-body">
@@ -110,25 +110,19 @@
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 {{--//mã hóa đơn--}}
                                 <div class="form-group">
-                                    <label class="span-color> Mã Hóa Đơn</label>
-                                    <input  width="300px" class="form-control" name="txtMaHoaDon" id="inputError" value="{{$benhnhan->mahoadon}}" placeholder="Mã hóa dơn ...">
                                     @if(count($errors)>0)
                                         <span class="has-error help-block">
                                             @foreach($errors->all() as $err)
                                                 {{$err}}<br>
                                             @endforeach
                                         </span>@endif
+                                    <label class="span-color"> Mã Hóa Đơn</label>
+                                    <input  width="300px" class="form-control" name="txtMaHoaDon" id="inputError" value="{{$benhnhan->mahoadon}}" placeholder="Mã hóa dơn ...">
                                 </div>
                                 {{--tên bênh nhân--}}
                                 <div class="form-group">
                                     <label class="span-color"> Tên Bệnh Nhân</label>
                                     <input  class="form-control" name="txtTen" value="{{$benhnhan->benhnhan_ten}}" id="inputError" placeholder="Tên bệnh nhân ...">
-                                    @if(count($errors)>0)
-                                        <span class="has-error help-block">
-                                            @foreach($errors->all() as $err)
-                                                {{$err}}<br>
-                                            @endforeach
-                                        </span>@endif
                                 </div>
                                 {{--gioi tinh--}}
                                 <div class="form-group">
@@ -146,13 +140,6 @@
                                 <div class="form-group">
                                     <label class="span-color"> Tuổi</label>
                                     <input type="number" class="form-control" name="txtTuoi" value="{{$benhnhan->benhnhan_tuoi}}" id="inputError" placeholder="Tuổi ...">
-                                    @if(count($errors)>0)
-                                        <span class="has-error help-block">
-                                            @foreach($errors->all() as $err)
-                                                {{$err}}<br>
-                                            @endforeach
-                                        </span>@endif
-
                                 </div>
 
                                 {{-- dia chi--}}

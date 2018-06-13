@@ -136,6 +136,7 @@ class UserController extends Controller
         $user ->user_level = $request->Level;
         $user ->user_trangthai=$request->TrangThai;
         $user ->user_ngaysinh=$request->txtNgaySinh;
+        echo $user ->user_ngaysinh;
         if($request->hasFile('Hinh'))
         {
             $file=$request->file('Hinh');

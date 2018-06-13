@@ -80,7 +80,7 @@
                     <!-- number Phone-->
                     <div class="form-group">
                         <label class=""> Số Điện Thoại</label>
-                        <input  class="form-control" name="SDT" id="inputError" value="{{$user->user_dt}}" placeholder="Nhập số điện thoại ...">
+                        <input  class="form-control" name="SDT" id="inputError" value=" 0{{$user->user_dt}}" placeholder="Nhập số điện thoại ...">
                     </div>
                     <!-- Level-->
                     <div class="form-group">

@@ -56,7 +56,7 @@
                               </div>
                               {{--tên bệnh--}}
                               <div class="form-group">
-                                  <label class="">Tên Bệnh</label>
+                                  <label class="">Nhóm Bệnh</label>
                                   <select class="form-control" name="txtBenh" id="txtTenBenh">
                                       {{--@foreach($nhombenh as $b)--}}
                                       {{--<option value="{{$b->id}}">{{$b->nhombenh_ten}}</option>--}}
@@ -88,31 +88,35 @@
                                   <div class="col-md-3 " >
                                       <p><img src="upload/user/medelab.png" class="img-fix" id="image_0" type="file" alt="">
                                           <input type="file" id="files0" class="_n files" for="0" name="arrayImg[]" ></p>
+                                      <span id="previewImg_0"></span>
                                   </div>
                                   <div class="col-md-3">
                                       <p><img src="upload/user/medelab.png" class="img-fix"  for="1" id="image_1" type="file" alt="">
                                           <input type="file" id="files1" class="_n files" for="1" name="arrayImg[]" ></p>
+                                      <span id="previewImg_1"></span>
                                   </div>
                                   <div class="col-md-3">
                                       <p><img src="upload/user/medelab.png" class="img-fix" for="2"  id="image_2" type="file" alt="">
                                           <input type="file" id="files2" class="_n files" for="2" name="arrayImg[]" ></p>
+                                      <span id="previewImg_2"></span>
                                   </div>
                                   <div class="col-md-3">
                                       <p><img src="upload/user/medelab.png" class="img-fix" for="3"  id="image_3" type="file" alt="">
                                           <input type="file" id="files3" class="_n files" for="3" name="arrayImg[]" ></p>
+                                      <span id="previewImg_3"></span>
                                   </div>
                               </div>
                                   {{--button-adđ--}}
-                                  <div class="box-footer col-md-12">
-                                      <button type="button" class="btn btn-primary pull-right" id="addImages"  >Thêm ảnh</button>
-                                  </div>
-                                  <div class="box-footer col-md-12">
-                                      <span id="previewImg"></span> <!-- span hứng images chọn từ fle -->
-                                      {{--<input class="hinh1" type="image" src="" width="100px"/> <!-- ảnh để chọn file -->--}}
-                                      <input type="image" name="" id="">
-                                      <input style="display: none " type='file' id="files" name="image" multiple="multiple" />
-                                  </div>
-                              button
+                                  {{--<div class="box-footer col-md-12">--}}
+                                      {{--<button type="button" class="btn btn-primary pull-right" id="addImages"  >Thêm ảnh</button>--}}
+                                  {{--</div>--}}
+                                  {{--<div class="box-footer col-md-12">--}}
+                                      {{--<span id="previewImg"></span> <!-- span hứng images chọn từ fle -->--}}
+                                      {{--<img class="hinh1" type="image" src="upload/user/medelab.png" width="100px"/> <!-- ảnh để chọn file -->--}}
+                                      {{--<input type="image" name="" id="">--}}
+                                      {{--<input style="display: none " type='file' id="files" name="arrayImg[]" multiple="multiple" />--}}
+                                  {{--</div>--}}
+
                               <div class="box-footer col-md-12">
                                   <button type="submit" class="btn btn-primary">Tạo</button>
                                   <button type="reset" class="btn btn-primary">Làm mới</button>
@@ -223,7 +227,7 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-            $("input[type='image']").click(function() {
+            $("img[type='image']").click(function() {
                 $("input[id='files']").click();
             });
         });
@@ -245,7 +249,7 @@
                     return function (e) {
                         // render thumbnail.
                         var span = document.createElement('span');
-                        span.innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>' ,'<i class="fa fa-times time " ></i>'].join('');
+                        span.innerHTML = ['<div class="col-md-3"><img class="thumb img-fix" src="', e.target.result,'" title="', escape(theFile.name), '"/>' ,'<i class="fa fa-times time " ></i></div>'].join('');
                         document.getElementById('previewImg').insertBefore(span, null); //chèn images vào span dựng sẵn có ID previewImg
 
                     };
@@ -258,16 +262,42 @@
         document.getElementById('files').addEventListener('change', handleFileSelect, false);
     </script>
     <!-- hàm xóa ảnh -->
+    {{--<script type="text/javascript">--}}
+        {{--$(document).on('click',".time" ,function() {--}}
+            {{--if(confirm("Bạn Có Muốn Xóa ?"))--}}
+            {{--{--}}
+                {{--$(this).closest("span" ).fadeOut();--}}
+                {{--$("#files").val(null); //xóa tên của file trong input--}}
+            {{--}--}}
+            {{--else--}}
+                {{--return false;--}}
+        {{--});--}}
+    {{--</script>--}}
     <script type="text/javascript">
-        $(document).on('click',".time" ,function() {
+        $(document).on('click',".time_0" ,function() {
+            var id =$(this).attr('for');
+            alert(id);
             if(confirm("Bạn Có Muốn Xóa ?"))
             {
+                document.getElementById("image_"+id).src = "upload/user/medelab.png";
                 $(this).closest("span" ).fadeOut();
-                $("#files").val(null); //xóa tên của file trong input
+                $("#files"+id).val(null); //xóa tên của file trong input
+
             }
             else
                 return false;
         });
     </script>
+    <script type="text/javascript">
+    document.getElementById("files4").onchange = function () {
+    var reader = new FileReader();
+    var stt =$(this).attr('for');
+    reader.onload = function (e) {
+    document.getElementById("image_"+stt).src = e.target.result;
+    };
+    reader.readAsDataURL(this.files[0]);
+    };
+    </script>
+
 @endsection
 

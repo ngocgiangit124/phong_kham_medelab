@@ -125,6 +125,9 @@
             </div><!--/.row-->
         </div><!--/.container-->
     </section>
+    {{--gioi thieu binh luan--}}
+
+    {{--tu van set nghiem--}}
     <section id="feature" class="ServicesColor transparent-bg  ">
         <div class="container container-fix">
             <div class="get-started center wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">
@@ -139,6 +142,70 @@
             </div>
         </div><!--/.container-->
     </section>
+    <section id="middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">
+                    <div class="skill">
+                        <h2>Video</h2>
+                        <div class="progress-wrap">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/Staicn6N7FQ" frameborder="0" allowfullscreen=""></iframe>
+                        </div>
 
+                    </div>
+
+                </div><!--/.col-sm-6-->
+
+                <div class="col-sm-6 wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">
+                    <div class="accordion">
+                        <h2>Nhận xét của khách hàng</h2>
+                        <div class="panel-group" id="accordion1">
+                            <div class="panel panel-default">
+                                <div class="panel-heading active">
+                                    <h3 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">
+                                            Nhận xét 1
+                                            <i class="fa fa-angle-right pull-right"></i>
+                                        </a>
+                                    </h3>
+                                </div>
+
+                                <div id="collapseOne1" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <div class="media accordion-inner">
+                                            <div class="pull-left">
+                                                <img class="img-responsive" src="images/accordion1.png">
+                                            </div>
+                                            <div class="media-body">
+                                                <p> Hôm qua mình đưa bố mẹ tới Medelab thăm khám sức khỏe tổng quát mình thấy rất hài lòng . Cám ơn phòng khám . Cảm nhận đầu tiên là phòng khám đẹp , sạch sẽ , bác bảo vệ rất thân thiện và nhiệt tình . Mình có đăng ký thăm khám trước qua tổng đài nên lúc đến khám các bạn lễ tân làm thủ tục thanh toán để các cụ đi thăm khám rất nhanh. Nhân viên hỏi han và chỉ dẫn cũng nhiệt tình. Bác sỹ thăm khám cũng tận tình tư vấn nên các cụ về rất hài lòng . 2 tháng sau mình sẽ đưa các cụ nhà mình quay lại thăm khám lại 1 vài các chỉ số mỡ máu và đường máu nhé. Cám ơn các bạn nhìu   </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1">
+                                            Nhận xét 2
+                                            <i class="fa fa-angle-right pull-right"></i>
+                                        </a>
+                                    </h3>
+                                </div>
+                                <div id="collapseTwo1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Mình có bảo hiểm ở phòng khám này, khi chuyển nơi làm việc mình vẫn muốn khám tại pk, vì máy xét nghiệm ở đây phải nói là rất chuẩn, mình rất tin tưởng và vẫn giới thiệu bạn bè và người thân tới đây xét nghiệm.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!--/#accordion1-->
+                    </div>
+                </div>
+
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section>
 
     @endsection

@@ -41,7 +41,7 @@
                     {{--hinh anh nen--}}
                     <div class="form-group">
                         <label for="exampleInputFile">File Hình Ảnh Nền</label>
-                        <p><img src="" width="400px" id="image_0" alt=""></p>
+                        <p><img src="upload/user/medelab.png" width="400px" id="image_0" alt=""></p>
                         <input type="file" name="txtHinhNen" for="0" id="files0" class="form-control">
                         @if(session('Bug'))
                             <p class="help-block">{{session('bug')}}</p>
@@ -50,15 +50,15 @@
                         @endif
                     </div>
                     {{--hinh anh dong--}}
-                    <div class="form-group">
-                        <label for="exampleInputFile">File Hình Ảnh Động</label>
-                        <p><img src="" width="200px" id="image_1" alt=""></p>
-                        <input type="file" name="txtHinhAnh" id="files1" for="1"  class="form-control">
-                        @if(session('Bug'))
-                            <p class="help-block">{{session('bug')}}</p>
+                    {{--<div class="form-group">--}}
+                        {{--<label for="exampleInputFile">File Hình Ảnh Động</label>--}}
+                        {{--<p><img src="" width="200px" id="image_1" alt=""></p>--}}
+                        {{--<input type="file" name="txtHinhAnh" id="files1" for="1"  class="form-control">--}}
+                        {{--@if(session('Bug'))--}}
+                            {{--<p class="help-block">{{session('bug')}}</p>--}}
 
-                        @endif
-                    </div>
+                        {{--@endif--}}
+                    {{--</div>--}}
                     {{--<!-- ckeditor--> noi dung--}}
                     <div class="form-group">
                         <label>Nội Dung</label>

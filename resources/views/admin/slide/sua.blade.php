@@ -49,14 +49,14 @@
                         @endif
                     </div>
                     {{--hinh anh dong--}}
-                    <div class="form-group">
-                        <label for="exampleInputFile">File Hình Ảnh Động</label>
-                        <p><img src="upload/slide/{{$slide->slide_hinhanh}}" width="200px" id="image_1" alt=""></p>
-                        <input type="file" name="txtHinhAnh" id="files1" for="1" class="form-control">
-                        @if(session('bug'))
-                            <p class="help-block">{{session('bug')}}</p>
-                        @endif
-                    </div>
+                    {{--<div class="form-group">--}}
+                        {{--<label for="exampleInputFile">File Hình Ảnh Động</label>--}}
+                        {{--<p><img src="upload/slide/{{$slide->slide_hinhanh}}" width="200px" id="image_1" alt=""></p>--}}
+                        {{--<input type="file" name="txtHinhAnh" id="files1" for="1" class="form-control">--}}
+                        {{--@if(session('bug'))--}}
+                            {{--<p class="help-block">{{session('bug')}}</p>--}}
+                        {{--@endif--}}
+                    {{--</div>--}}
                     {{--<!-- ckeditor--> noi dung--}}
                     <div class="form-group">
                         <label>Nội Dung</label>

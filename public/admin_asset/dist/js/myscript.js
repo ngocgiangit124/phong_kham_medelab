@@ -22,40 +22,55 @@ $(document).ready(function () {
     document.getElementById("files0").onchange = function () {
         var reader = new FileReader();
         var stt =$(this).attr('for');
+        var span = document.createElement('span');
         reader.onload = function (e) {
             document.getElementById("image_"+stt).src = e.target.result;
+            span.innerHTML=['<i class="fa fa-times time_0 " for ="'+stt+'"></i>'].join('');
+            document.getElementById("previewImg_"+stt).insertBefore(span, null); //chèn images vào span dựng sẵn có ID previewImg
         };
         reader.readAsDataURL(this.files[0]);
     };
     document.getElementById("files1").onchange = function () {
         var reader = new FileReader();
         var stt =$(this).attr('for');
+        var span = document.createElement('span');
         reader.onload = function (e) {
             document.getElementById("image_"+stt).src = e.target.result;
+            span.innerHTML=['<i class="fa fa-times time_0 " for ="'+stt+'"></i>'].join('');
+            document.getElementById("previewImg_"+stt).insertBefore(span, null); //chèn images vào span dựng sẵn có ID previewImg
         };
         reader.readAsDataURL(this.files[0]);
     };
     document.getElementById("files2").onchange = function () {
         var reader = new FileReader();
         var stt =$(this).attr('for');
+        var span = document.createElement('span');
         reader.onload = function (e) {
             document.getElementById("image_"+stt).src = e.target.result;
+            span.innerHTML=['<i class="fa fa-times time_0 " for ="'+stt+'"></i>'].join('');
+            document.getElementById("previewImg_"+stt).insertBefore(span, null); //chèn images vào span dựng sẵn có ID previewImg
         };
         reader.readAsDataURL(this.files[0]);
     };
     document.getElementById("files3").onchange = function () {
         var reader = new FileReader();
         var stt =$(this).attr('for');
+        var span = document.createElement('span');
         reader.onload = function (e) {
             document.getElementById("image_"+stt).src = e.target.result;
+            span.innerHTML=['<i class="fa fa-times time_0 " for ="'+stt+'"></i>'].join('');
+            document.getElementById("previewImg_"+stt).insertBefore(span, null); //chèn images vào span dựng sẵn có ID previewImg
         };
         reader.readAsDataURL(this.files[0]);
     };
     document.getElementById("files4").onchange = function () {
         var reader = new FileReader();
         var stt =$(this).attr('for');
+        var span = document.createElement('span');
         reader.onload = function (e) {
             document.getElementById("image_"+stt).src = e.target.result;
+            span.innerHTML=['<i class="fa fa-times time_'+stt+' " for ="'+stt+'"></i>'].join('');
+            document.getElementById("previewImg_"+stt).insertBefore(span, null); //chèn images vào span dựng sẵn có ID previewImg
         };
         reader.readAsDataURL(this.files[0]);
     };

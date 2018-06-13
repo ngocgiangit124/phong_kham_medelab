@@ -93,12 +93,38 @@
 
 
                                 <div class="col-md-3">
-                                    <p><img src="upload/benhnhan/{{$value->hinhanh_ten}}" class="img-fix" id="image_{{$i}}" type="file" alt="">
-                                        <input type="file" id="files{{$i}}" class="_n files" for="{{$i}}" name="arrayImg[]" ></p>
+                                    <p><img src="upload/benhnhan/{{$value->hinhanh_ten}}" class="img-fix" id="image" type="file" alt="">
+                                        {{--<input type="file" id="files{{$i}}" class="_n files" for="{{$i}}" name="arrayImg[]" ></p>--}}
                                     <a href="admin/benhnhan/benhan/xoahinhanh/{{$value->id}}"> <i class="fa fa-times time " ></i></a>
                                 </div>
                                     <?php $i++; ?>
                             @endforeach
+                            </div>
+                            <div class="form-group col-md-12 addimg" id="insert">
+                                <label for="exampleInputFile" class="col-md-12">File Hình Ảnh</label>
+                                @if(session('Bug'))
+                                    <p class="help-block">{{session('Bug')}}</p>
+                                @endif
+                                <div class="col-md-3 " >
+                                    <p><img src="upload/user/medelab.png" class="img-fix" id="image_0" type="file" alt="">
+                                        <input type="file" id="files0" class="_n files" for="0" name="arrayImg[]" ></p>
+                                    <span id="previewImg_0"></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <p><img src="upload/user/medelab.png" class="img-fix"  for="1" id="image_1" type="file" alt="">
+                                        <input type="file" id="files1" class="_n files" for="1" name="arrayImg[]" ></p>
+                                    <span id="previewImg_1"></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <p><img src="upload/user/medelab.png" class="img-fix" for="2"  id="image_2" type="file" alt="">
+                                        <input type="file" id="files2" class="_n files" for="2" name="arrayImg[]" ></p>
+                                    <span id="previewImg_2"></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <p><img src="upload/user/medelab.png" class="img-fix" for="3"  id="image_3" type="file" alt="">
+                                        <input type="file" id="files3" class="_n files" for="3" name="arrayImg[]" ></p>
+                                    <span id="previewImg_3"></span>
+                                </div>
                             </div>
 
                             {{--button--}}
@@ -146,5 +172,34 @@
         });
     </script>
     <script src="admin_asset/bower_components/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).on('click',".time_0" ,function() {
+            var id =$(this).attr('for');
+//            alert(id);
+            if(confirm("Bạn Có Muốn Xóa ?"))
+            {
+                document.getElementById("image_"+id).src = "upload/user/medelab.png";
+                $(this).closest("span" ).fadeOut();
+                $("#files"+id).val(null); //xóa tên của file trong input
+
+            }
+            else
+                return false;
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).on('click',".time" ,function() {
+//            alert(id);
+            if(confirm("Bạn Có Muốn Xóa ?"))
+            {
+//                document.getElementById("image_"+id).src = "upload/user/medelab.png";
+//                $(this).closest("span" ).fadeOut();
+//                $("#files"+id).val(null); //xóa tên của file trong input
+
+            }
+            else
+                return false;
+        });
+    </script>
 @endsection
 

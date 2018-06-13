@@ -23,7 +23,7 @@ class AjaxController extends Controller
             $GT="Nam";
         };
         //$ngaysinh=Carbon::parse($user->user_ngaysinh);
-        $ngaysinh = $user->user_ngaysinh->format('d/m/Y');
+        $ngaysinh =Carbon::parse($user->user_ngaysinh)->format('d/m/Y');
         //echo $ngaysinh;
 
                 echo "<img class=\"profile-user-img img-responsive img-circle\" id=\"img\" src=\"upload/user/{$user->user_hinhanh}\" alt=\"User profile picture\">
@@ -33,7 +33,7 @@ class AjaxController extends Controller
                         <p class=\"text-muted text-center\"></p>
 
                         <ul class=\"list-group list-group-unbordered\">
-                            <li class=\"list-group-item\">php 
+                            <li class=\"list-group-item\">
                                 <b>Tên Đầy Đủ :</b> <a class=\"pull-right\">{$user->user_tendaydu}</a>
                             </li>
                             

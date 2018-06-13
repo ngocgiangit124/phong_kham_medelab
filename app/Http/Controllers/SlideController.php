@@ -19,41 +19,37 @@ class SlideController extends Controller
     }
     public function postThem(Request $request)
     {
-        $this->validate($request,[
-            'txtTen'=>'required|min:3|max:100'
-        ],[
-            'txtTen.required'=>'Bạn chưa nhập Tên',
-            'txtTen.min'=>'Tên ngừoi nhiều  hơn 3 ký tự',
-            'txtTen.max'=>'Tên ngừoi phải ít hơn 100 ký tự'
+        $this->validate($request, [
+            'txtTen' => 'required|min:3|max:100'
+        ], [
+            'txtTen.required' => 'Bạn chưa nhập Tên',
+            'txtTen.min' => 'Tên ngừoi nhiều  hơn 3 ký tự',
+            'txtTen.max' => 'Tên ngừoi phải ít hơn 100 ký tự'
         ]);
         $slide = new Slide;
-        $slide -> slide_ten = $request->txtTen;
-        $slide -> slide_noidung= $request->txtNoiDung;
-        $slide -> slide_link= $request->txtLink;
-        $slide ->trangthai=$request->trangthai;
+        $slide->slide_ten = $request->txtTen;
+        $slide->slide_noidung = $request->txtNoiDung;
+        $slide->slide_link = $request->txtLink;
+        $slide->trangthai = $request->trangthai;
 //        hinh nen------------------------------------------------------
-        if($request->hasFile('txtHinhNen'))
-        {
-            $file=$request->file('txtHinhNen');
-            $duoi=$file->getClientOriginalExtension();
-            if($duoi!='jpg'&& $duoi!='png' && $duoi='jpeg')
-            {
-                return redirect('admin/slide/them')->with('Bug','Lỗi file bạn chỉ được chọn ảnh có đuôi jpg,png,jpeg');
+        if ($request->hasFile('txtHinhNen')) {
+            $file = $request->file('txtHinhNen');
+            $duoi = $file->getClientOriginalExtension();
+            if ($duoi != 'jpg' && $duoi != 'png' && $duoi = 'jpeg') {
+                return redirect('admin/slide/them')->with('Bug', 'Lỗi file bạn chỉ được chọn ảnh có đuôi jpg,png,jpeg');
             }
-            $name=$file->getClientOriginalName();
-            $Hinh=str_random(4)."_".$name;
-            while (file_exists("upload/slide/".$Hinh))
-            {
-                $Hinh=str_random(4)."_".$name;
+            $name = $file->getClientOriginalName();
+            $Hinh = str_random(4) . "_" . $name;
+            while (file_exists("upload/slide/" . $Hinh)) {
+                $Hinh = str_random(4) . "_" . $name;
             }
-            $file->move("upload/slide/",$Hinh);
+            $file->move("upload/slide/", $Hinh);
             //unlink("upload/bacsy/".$bacsy->bacsy_hinhanh);
-            $slide->slide_hinhnen=$Hinh;
+            $slide->slide_hinhnen = $Hinh;
+        } else {
+            return redirect()->back()->with('bugloi', ' Chưa nhập ảnh nền!');
         }
-        else
-        {
-            return redirect()->back()->with('bugloi',' Chưa nhập ảnh nền!');
-        }
+
 //        hinh anh dong-------------------------------------------------------------
         if($request->hasFile('txtHinhAnh'))
         {
@@ -118,15 +114,8 @@ class SlideController extends Controller
                 $Hinh=str_random(4)."_".$name;
             }
             $file->move("upload/slide/",$Hinh);
-            if(($slide->slide_hinhnen)!= null)
-            {
-                unlink("upload/slide/".$slide->slide_hinhnen);
-            }
-            $slide->silde_hinhnen=$Hinh;
-        }
-        else
-        {
-            $slide->slide_hinhnen="";
+            // unlink("upload/slide/".$slide->slide_hinhnen);
+            $slide->slide_hinhnen=$Hinh;
         }
 //        hinh anh dong-------------------------------------------------------------
         if($request->hasFile('txtHinhAnh'))
@@ -144,15 +133,13 @@ class SlideController extends Controller
                 $Hinh=str_random(4)."_".$name;
             }
             $file->move("upload/slide/",$Hinh);
-//            unlink("upload/slide/".$slide->slide_hinhanh);
-//            $slide->slide_hinhanh=$Hinh;
-            if(($slide->slide_hinhanh)!= null)
-            {
-                unlink("upload/slide/".$slide->slide_hinhanh);
-            }
-            $slide->silde_hinhanh=$Hinh;
+            //unlink("upload/slide/".$slide->slide_hinhanh);
+            $slide->slide_hinhanh=$Hinh;
         }
-
+        else
+        {
+            $slide->slide_hinhanh="";
+        }
 
         $slide ->save();
         //echo 'dathanh cong';
