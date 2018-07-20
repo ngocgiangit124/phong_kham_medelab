@@ -15,15 +15,13 @@
                         <div class="col-xs-12 col-sm-2 text-center">
                             <div class="entry-meta">
                                 <span id="publish_date">{{$value->created_at}}</span>
-                                <span><i class="fa fa-user"></i> <a href="#">{{$value->tintuc_tacgia}}</a></span>
-                                <span><i class="fa fa-comment"></i> <a href="blog-item.html#comments">2 Comments</a></span>
-                                {{--<span><i class="fa fa-heart"></i><a href="#">56 Likes</a></span>--}}
+                                <span><i class="fa fa-user"></i> <a href="trangchu/tintuc/#">{{$value->tintuc_tacgia}}</a></span>
                             </div>
                         </div>
 
                         <div class="col-xs-12 col-sm-10 blog-content">
-                            <a href="#"><img class="img-responsive img-blog" src="upload/tintuc/{{$value->tintuc_anh}}" width="100%" alt="" /></a>
-                            <h2><a href="blog-item.html">{{$value->tintuc_tieude}}</a></h2>
+                            <a ><img class="img-responsive img-blog" src="upload/tintuc/{{$value->tintuc_anh}}" width="100%" alt="" /></a>
+                            <h2><a >{{$value->tintuc_tieude}}</a></h2>
                             <h3>{!! $value->tintuc_mota !!}</h3>
                             <a class="btn btn-primary readmore" href="trangchu/tintuc/{{$value->id}}">Xem thêm <i class="fa fa-angle-right"></i></a>
                         </div>
@@ -48,7 +46,7 @@
                 {{--</div><!--/.search-->--}}
 
                 <div class="widget categories">
-                    <h3>Recent Comments</h3>
+                    <h3>Tin Nổi bật</h3>
                     <div class="row">
                         @foreach($tintucnoibat as $value)
                             <div class="col-sm-12">
@@ -66,16 +64,7 @@
                 </div><!--/.recent comments-->
 
                 <div class="widget blog_gallery">
-                    <h3>Our Gallery</h3>
-                    <ul class="sidebar-gallery">
-                        <li><a href="#"><img src="images/blog/gallery1.png" alt="" /></a></li>
-                        <li><a href="#"><img src="images/blog/gallery2.png" alt="" /></a></li>
-                        <li><a href="#"><img src="images/blog/gallery3.png" alt="" /></a></li>
-                        <li><a href="#"><img src="images/blog/gallery4.png" alt="" /></a></li>
-                        <li><a href="#"><img src="images/blog/gallery5.png" alt="" /></a></li>
-                        <li><a href="#"><img src="images/blog/gallery6.png" alt="" /></a></li>
-                    </ul>
-                </div><!--/.blog_gallery-->
+                </div>
             </aside>
         </div><!--/.row-->
     </div>

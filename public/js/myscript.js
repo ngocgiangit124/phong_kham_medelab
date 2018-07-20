@@ -1,5 +1,14 @@
 $(document).ready(function () {
-   $("#addImages").click(function () {
-       $("#insert").append(' <div class="input-group margin"><input type="file" name="txtHinh" class="form-control"><span class="input-group-btn"><button type="button" class="btn btn-info btn-flat" >Add Img</button></span></div>')
-   });
+    $("#txtKhoa").change(function () {
+        var idKhoa =$(this).val();
+        alert(idKhoa);
+//                $.get("/ajax/chuyenkhoa/"+idKhoa,function(data){
+//                      alert(data);
+//                    //$("#txtBacSy").html(data);
+        //});
+    });
 });
+document.getElementById('button').onclick =function () {
+    alert('oke');
+
+};

@@ -25,7 +25,7 @@
                                 @elseif($bacsy->user->user_gioitinh==0)
                                        Nữ
                                 @endif</p>
-                                <p>Ngày sinh:</p>
+                                <p>Ngày sinh: {{\Carbon\Carbon::parse($bacsy->user->user_ngaysinh)->format('d/m/Y')}}</p>
                             </div>
                         </div>
                     </div>

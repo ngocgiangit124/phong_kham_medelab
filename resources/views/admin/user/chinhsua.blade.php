@@ -67,27 +67,26 @@
                     <!-- number Phone-->
                     <div class="form-group">
                         <label class=""> Số Điện Thoại</label>
-                        <input  class="form-control" name="SDT" id="inputError" value="{{$user->user_dt}}" placeholder="Nhập số điện thoại ...">
+                        <input  class="form-control" name="SDT" id="inputError" value="0{{$user->user_dt}}" placeholder="Nhập số điện thoại ...">
                     </div>
                     <!-- Level-->
-                    <div class="form-group">
+                    <div class="form-group" >
                         <label>Level</label>
-                        <select class="form-control" name="Level">
-                            <option   value="0"
+                        <select class="form-control" name="Level" >
+
                             @if($user->user_level==0)
-                                {{"selected"}}
-                                    @endif >Admin</option>
-                            <option  value="1"
-                            @if($user->user_level==1)
-                                {{"selected"}}
-                                    @endif>Nhân Viên</option>
-                            <option  value="2"
-                            @if($user->user_level==2)
-                                {{"selected"}}
-                                    @endif>Bác Sỹ</option>
+                                <option   value="0">Admin</option>
+
+                            @elseif($user->user_level==1)
+                                    <option  value="1">Nhân Viên</option>
+
+                            @elseif($user->user_level==2)
+                                    <option  value="2">Bác Sỹ</option>
+                                    @endif
                         </select>
 
                     </div>
+
                     <!--file img-->
                     <div class="form-group">
                         <label for="exampleInputFile">File Hình Ảnh</label>

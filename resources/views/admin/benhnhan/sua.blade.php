@@ -95,7 +95,9 @@
                     </div>
                     <!-- /.tab-content -->
                 </div>
-                <!-- /.nav-tabs-custom -->@endforeach
+                <!-- /.nav-tabs-custom -->
+                @endforeach
+                <div><a href="admin/benhnhan/them/benhan/{{$benhnhan->id}}"><button type="button" class="btn btn-primary"> Thêm bệnh án</button></a></div>
             </div>
             <div class="col-md-4">
                     <div class="box box-warning">

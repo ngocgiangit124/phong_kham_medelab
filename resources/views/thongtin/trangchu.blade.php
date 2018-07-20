@@ -26,7 +26,7 @@
 
                             <div class="col-sm-6 hidden-xs animation animated-item-4">
                                 <div class="slider-img">
-                                    <img src="upload/slide/{{$value->slide_hinhanh}}" class="img-responsive">
+                                    {{--<img src="upload/slide/{{$value->slide_hinhanh}}" class="img-responsive">--}}
                                 </div>
                             </div>
 
@@ -44,7 +44,99 @@
             <i class="fa fa-chevron-right"></i>
         </a>
     </section><!--/#main-slider-->
-    {{--portfolio--}}
+    {{--end slider--}}
+    {{--đăng ký lịch khám--}}
+    <section id="Calendar" class="ServicesColor transparent-bg Services ">
+        <div id="Calendar-div" class="container container-fix">
+            {{--<div class="get-started  fix-get-started" style="visibility: visible; animation-name: fadeInDown;">--}}
+            <div class="row fix-get-started ">
+                <div class="col-md-12">
+                    <form style="background-color: #fff; padding: 40px 40px 20px 40px" role="form"  action="trangchu/lichkham" method="post" enctype="multipart/form-data" >
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span style="font-size: 19px;padding-bottom: 7px;"> ĐẶT LỊCH PHÒNG KHÁM</span>
+                            </div>
+                            @if(session('thongbao'))
+                                <div class="alert alert-success">
+                                    {{session('thongbao')}}
+                                </div>
+                            @endif
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="">Tên khoa phòng</label>
+                                    <select class="form-control" name="txtKhoa" id="txtKhoa">
+                                        <option selected="selected" disabled="disabled">Vui lòng chọn khoa phòng</option>
+                                        @foreach($allchuyenkhoa as $allck)
+                                            <option value="{{$allck->id}}">{{$allck->ten_khoa}}</option>
+                                        @endforeach()
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 ">
+                                <div class="form-group">
+                                    <label for="room">Bác sĩ</label>
+                                    <div class="popover-icon" ><i class="fa fa-info-circle fa-lg"> </i> </div>
+                                    <select class="form-control" name="txtBacSy" id="txtBacSy">
+                                        <option selected="selected" disabled="disabled">Chọn Khoa Phòng Trước Khi Chọn Bác Sĩ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="">Ngày tháng khám</label>
+                                    <div class="popover-icon" > <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                    {{--<select class="form-control" id="" name="id" style="display: none">--}}
+                                        {{--<option selected="selected" disabled="disabled">Chọn bác sĩ để biết lịch khảm khả dụng</option>--}}
+                                    {{--</select>--}}
+                                    <input name="txtLich" type="date" id="checkin" value="" class="form-control hasDatepicker" placeholder="Đặt ngày khám">
+                                </div>
+                            </div>
+                            <div class="col-sm-2" id="fix-button">
+                                <button type="button" class="btn btn-primary btn-lg book-now" id="button" style="margin-top:28px;">Đặt lịch</button>
+                            </div>
+                            <div class="col-sm-2 " hidden id="fix-button1" >
+                                <button type="submit" class="btn btn-primary btn-lg book-now" id="button" style="margin-top:28px;">Đặt lịch</button>
+                            </div>
+                            <div class="col-md-6 " id="fix-hidden" hidden >
+                                <div class="form-group">
+                                    <label for=""><span class="">*</span> Họ tên</label>
+                                    <input type="text" name="txtTen" placeholder="Họ tên của bạn" class="form-control input-lg" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-6" id="fix-hidden1" hidden>
+                                <div class="form-group">
+                                    <label for=""><span class="">*</span> Số điện thoại</label>
+                                    <input type="number" name="txtSDT" placeholder="Số điện thoại của bạn"  class="form-control input-lg"  value="">
+                                </div>
+                            </div>
+                            <div class="col-md-6 " id="fix-hidden2" hidden>
+                                <div class="form-group">
+                                    <label for=""><span class="">*</span> E-mail</label>
+                                    <input  type="email" name="txtEmail" placeholder="Email của bạn"  class="form-control input-lg"  value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group fix" id="fix-hidden3"hidden>
+                            <label for="contactFormMessage"><span class="">*</span> Nội dung</label>
+                            <textarea  rows="6" name="txtNoiDung" class="form-control" id="contactFormMessage">---Đặt lịch---</textarea>
+                        </div>
+                        <p style="padding:13px; padding-left:4px;">(*) Chuyên viên chăm sóc khách hàng sẽ liên lạc với quý khách để xác nhận lịch khám</p>
+                        <p style="padding-left:4px;">
+                            @if(count($errors)>0)
+                                <span class="has-error help-block">
+                                    @foreach($errors->all() as $err)
+                                        {{$err}}<br>
+                                    @endforeach
+                                </span>@endif
+                            <a href="tel:19006057" class="btn btn-primary ">HOẶC GỌI NGAY HOTLINE: 1900 6057</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div><!--/.container-->
+    </section>
+    {{-- end đăng ký lịch khám--}}
     <section id="portfolio" class="Services">
     <div class="container container-fix">
         <div class="center">
@@ -207,5 +299,31 @@
             </div><!--/.row-->
         </div><!--/.container-->
     </section>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $("#txtKhoa").change(function () {
+                var idKhoa =$(this).val();
+//                alert(idKhoa);
+                $.get("trangchu/ajax/chuyenkhoa/"+idKhoa,function(data){
+                      //alert(data);
+                    $("#txtBacSy").html(data);
+                });
+            });
+        });
+    </script>
+    <script>
+        document.getElementById("button")
+            .addEventListener("click", function() {
+                document.getElementById("fix-button1").hidden = false;
+                document.getElementById("fix-hidden").hidden = false;
+                document.getElementById("fix-hidden1").hidden = false;
+                document.getElementById("fix-hidden2").hidden = false;
+                document.getElementById("fix-hidden3").hidden = false;
+                document.getElementById("fix-button").hidden = true;
+            }, false);
+    </script>
 
-    @endsection
+
+@endsection

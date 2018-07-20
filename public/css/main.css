@@ -184,7 +184,7 @@ body > section {
 
 .top-bar {
   padding: 10px 0;
-  background: #35786D;
+  background: #0C5E50;
   border-bottom: 1px solid #222;
   line-height: 28px;
 }
@@ -265,7 +265,7 @@ input.search-form:hover {
 .navbar {
   border-radius: 0;
   margin-bottom: 0;
-  background: #0C5E50;
+  background: #fff;
   padding: 15px 0;
   padding-bottom: 0;
 }
@@ -283,7 +283,7 @@ input.search-form:hover {
   padding: 5px 12px;
   margin: 0;
   border-radius: 3px;
-  color: #fff;
+  color: #000;
   line-height: 24px;
   display: inline-block;
 }
@@ -409,7 +409,8 @@ input.search-form:hover {
   position: absolute;
   width: 100%;
   display: block !important;
-  height: 730px;
+  height: 450px;
+  /*fix - slideđã sửa*/
   -webkit-transition: opacity ease-in-out 500ms;
   -moz-transition: opacity ease-in-out 500ms;
   -o-transition: opacity ease-in-out 500ms;
@@ -2468,9 +2469,9 @@ shortcodes page css
 ********* Footer ******
 ************************/
 #bottom {
-  background: #A9CEC7;
+  background: #3B3B3B;
   border-bottom: 5px solid #c52d2f;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 #bottom h3 {
@@ -2490,13 +2491,14 @@ shortcodes page css
 #bottom ul li {
   display: block;
   padding: 5px 0;
+  border-bottom:1px solid #B0B0B0 ;
 }
 
 #bottom ul li a {
-  color: #115C4B;
+  color: #B0B0B0;
 }
 #bottom p {
-  color: #115C4B;
+  color: #B0B0B0;
 }
 
 #bottom ul li a:hover {

@@ -46,7 +46,7 @@
                                                 </fieldset>
                                             </div>
                                             @endforeach
-                                            <button type="button" class="btn btn-default  button-mycss">Xuất pdf</button>
+                                            {{--<button type="button" class="btn btn-default  button-mycss">Xuất pdf</button>--}}
                                         </form>
                                         <!--End:Form-->
                                     </div>

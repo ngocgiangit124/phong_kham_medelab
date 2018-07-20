@@ -33,7 +33,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class="fa fa-users"></i> <span>Slide</span>
+                <a href="#"><i class="fa fa-dashboard"></i> <span>Slide</span>
                     <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -44,7 +44,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class="fa fa-users"></i> <span>Tin Tức</span>
+                <a href="#"><i class="fa fa-dashboard"></i> <span>Tin Tức</span>
                     <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -55,7 +55,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class="fa fa-users"></i> <span>Comment</span>
+                <a href="#"><i class="fa fa-dashboard"></i> <span>Comment</span>
                     <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -66,7 +66,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class="fa fa-users"></i> <span>Nhóm Bệnh</span>
+                <a href="#"><i class="fa fa-dashboard"></i> <span>Nhóm Bệnh</span>
                     <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>

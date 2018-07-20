@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\LichKham;
 use App\NhomBenh;
 use Illuminate\Http\Request;
 use App\BacSy;
@@ -79,5 +80,41 @@ class AjaxController extends Controller
         }
         //return $bacsy;
     }
+    public function getLich($id)
+    {
+        $lich =LichKham::find($id);
+        $ngaykham =Carbon::parse($lich->ngaykham)->format('d/m/Y');
+        echo "  <h3 class=\"profile-username text-center\">Phiếu đặt lịch của id= {$lich->id}</h3>
+
+                        <ul class=\"list-group list-group-unbordered\">
+                            <li class=\"list-group-item\">
+                                <b>Họ tên :</b> <a class=\"pull-right\">{$lich->ten_nguoikham}</a>
+                            </li>
+                            <li class=\"list-group-item\">
+                                <b>Chọn bác sỹ :</b> <a class=\"pull-right\">{$lich->bacsy->bacsy_ten}</a>
+                            </li>
+
+                            <li class=\"list-group-item\" >
+                                <b>Đặt ngày khám :</b> <a class=\"pull-right\">$ngaykham</a>
+                            </li>
+                            <li class=\"list-group-item\" >
+                                <b>Số điện thoại :</b> <a class=\"pull-right\">{$lich->dienthoai}</a>
+                            </li>
+                            <li class=\"list-group-item\" >
+                                <b>Email :</b> <a class=\"pull-right\">{$lich->email_nguoikham}</a>
+                            </li>
+                            <li class=\"list-group-item\" >
+                            <strong> Nội Dung</strong>
+                            <p class=\"text-muted\">
+                                <span  class=\"\" style=\"color: #000\">{$lich->noidung}</span>
+                            </p>
+                            </li>
+                        </ul>
+
+                        <a href=\"admin/lichkham/chinhsua/{$lich->id}\" class=\"btn btn-primary btn-block\"><b>Chỉnh sửa</b></a>
+                        <a href=\"admin/lichkham/xoa/{$lich->id}\" class=\"btn btn-primary btn-block\"><b>Xóa</b></a>";
+
+    }
+
 
 }

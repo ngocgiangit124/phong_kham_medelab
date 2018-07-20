@@ -54,7 +54,7 @@
                     </div>
                     {{--tuoi--}}
                     <div class="form-group">
-                        <label class=""> tuoi</label>
+                        <label class=""> Tuổi</label>
                         <input  type="number" class="form-control" name="txtTuoi" id="inputError" placeholder="Tuoi ...">tuổi
                     </div>
                     {{-- dia chi--}}

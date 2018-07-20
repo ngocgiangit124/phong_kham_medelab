@@ -160,7 +160,7 @@ class UserController extends Controller
         }
         $user ->save();
         //echo 'dathanh cong';
-        return redirect('admin/user/sua/'.$id)->with('thongbao','Sửa thành công');
+        return redirect()->back()->with('thongbao','Sửa thành công');
     }
     public function getXoa($id)
     {

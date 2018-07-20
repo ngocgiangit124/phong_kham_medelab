@@ -14,6 +14,7 @@
             <li class="active">Sửa</li>
         </ol>
     </section>
+
     <section class="content">
         {{--<div class="box box-warning">--}}
         @if(session('thongbao'))
@@ -87,7 +88,7 @@
 
                             {{--@endforeach--}}
                             <div class="form-group col-md-12 addimg">
-                                <label for="exampleInputFile" class="col-md-12">File Hình Ảnh</label>
+                                <label for="exampleInputFile" class="col-md-12"> Hình Ảnh </label>
                                 <?php $i=0; ?>
                             @foreach($hinhanh as $value)
 
@@ -101,7 +102,7 @@
                             @endforeach
                             </div>
                             <div class="form-group col-md-12 addimg" id="insert">
-                                <label for="exampleInputFile" class="col-md-12">File Hình Ảnh</label>
+                                <label for="exampleInputFile" class="col-md-12">Thêm Hình Ảnh</label>
                                 @if(session('Bug'))
                                     <p class="help-block">{{session('Bug')}}</p>
                                 @endif
@@ -133,6 +134,7 @@
                                 <button type="reset" class="btn btn-primary">Reset</button>
                             </div>
                         </form>
+
                     </div>
 
                 </div>

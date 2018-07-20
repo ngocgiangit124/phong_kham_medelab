@@ -28,27 +28,27 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-striped">
-                            <div class="col-sm-6">
-                                <div class="dataTables_length" id="example2_length">
-                                    <div class="col-md-2" style="margin-left: 40px; margin-top: 5px">
-                                        <label >Show:</label>
-                                    </div>
-                                    <div class="col-md-3"  style="margin-left: -10px;">
-                                        <select  class="form-control input-sm ">
-                                            <option value="10">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="col-sm-4"><label style="margin-left: 20px;margin-top: 5px">Tìm kiếm :</label></div>
-                                <div id="example2_filter" class="dataTables_filter col-md-8" >
-                                    <input type="search" class="form-control input-sm" style="margin-left: -30px;">
-                                </div>
-                            </div>
+                            {{--<div class="col-sm-6">--}}
+                                {{--<div class="dataTables_length" id="example2_length">--}}
+                                    {{--<div class="col-md-2" style="margin-left: 40px; margin-top: 5px">--}}
+                                        {{--<label >Show:</label>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col-md-3"  style="margin-left: -10px;">--}}
+                                        {{--<select  class="form-control input-sm ">--}}
+                                            {{--<option value="10">10</option>--}}
+                                            {{--<option value="25">25</option>--}}
+                                            {{--<option value="50">50</option>--}}
+                                            {{--<option value="100">100</option>--}}
+                                        {{--</select>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-sm-6">--}}
+                                {{--<div class="col-sm-4"><label style="margin-left: 20px;margin-top: 5px">Tìm kiếm :</label></div>--}}
+                                {{--<div id="example2_filter" class="dataTables_filter col-md-8" >--}}
+                                    {{--<input type="search" class="form-control input-sm" style="margin-left: -30px;">--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -121,47 +121,6 @@
                     <!-- /.box-body -->
                 </div>
                 <!-- /.box -->
-
-                <!-- About Me Box -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">About Me</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-
-                        <p class="text-muted">
-                            B.S. in Computer Science from the University of Tennessee at Knoxville
-                        </p>
-
-                        <hr>
-
-                        <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
-                        <p class="text-muted">Malibu, California</p>
-
-                        <hr>
-
-                        <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-
-                        <p>
-                            <span class="label label-danger">UI Design</span>
-                            <span class="label label-success">Coding</span>
-                            <span class="label label-info">Javascript</span>
-                            <span class="label label-warning">PHP</span>
-                            <span class="label label-primary">Node.js</span>
-                        </p>
-
-                        <hr>
-
-                        <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
             </div>
         {{--endprofile--}}
         <!-- /.row -->
@@ -178,7 +137,7 @@
             $('#example2').DataTable({
                 'paging'      : false,
                 'lengthChange': true,
-                'searching'   : false,
+                'searching'   : true,
                 'ordering'    : false,
                 'info'        : false,
                 'autoWidth'   : false

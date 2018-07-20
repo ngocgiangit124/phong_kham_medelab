@@ -32,7 +32,7 @@ class LoginController extends Controller
         }
         elseif(Auth::attempt(['email'=>$request->txtEmail,'password'=>$request->password,'user_level'=>2,'user_trangthai'=>1]))
         {
-            return redirect('bacsy/home');
+            return redirect('bacsy/');
         }
         else
         {

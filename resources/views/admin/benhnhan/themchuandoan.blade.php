@@ -110,12 +110,12 @@
                                   {{--<div class="box-footer col-md-12">--}}
                                       {{--<button type="button" class="btn btn-primary pull-right" id="addImages"  >Thêm ảnh</button>--}}
                                   {{--</div>--}}
-                                  {{--<div class="box-footer col-md-12">--}}
-                                      {{--<span id="previewImg"></span> <!-- span hứng images chọn từ fle -->--}}
-                                      {{--<img class="hinh1" type="image" src="upload/user/medelab.png" width="100px"/> <!-- ảnh để chọn file -->--}}
-                                      {{--<input type="image" name="" id="">--}}
-                                      {{--<input style="display: none " type='file' id="files" name="arrayImg[]" multiple="multiple" />--}}
-                                  {{--</div>--}}
+                                  <div class="box-footer col-md-12">
+                                      <span id="previewImg"></span> <!-- span hứng images chọn từ fle -->
+                                      <img class="hinh1" type="image" src="upload/user/medelab.png" width="100px"/> <!-- ảnh để chọn file -->
+                                      <input type="image" name="" id="">
+                                      <input style="display: none " type='file' id="files" name="arrayImg[]" multiple="multiple" />
+                                  </div>
 
                               <div class="box-footer col-md-12">
                                   <button type="submit" class="btn btn-primary">Tạo</button>
@@ -229,6 +229,7 @@
         $(document).ready(function(){
             $("img[type='image']").click(function() {
                 $("input[id='files']").click();
+//                    alert($('#files').val());
             });
         });
     </script>
@@ -248,8 +249,9 @@
                 reader.onload = (function (theFile) {
                     return function (e) {
                         // render thumbnail.
+                        var inputsrc = $('#files').val();
                         var span = document.createElement('span');
-                        span.innerHTML = ['<div class="col-md-3"><img class="thumb img-fix" src="', e.target.result,'" title="', escape(theFile.name), '"/>' ,'<i class="fa fa-times time " ></i></div>'].join('');
+                        span.innerHTML = ['<div class="col-md-3"><input style="display: none " type="file" id="files" value='+inputsrc+' name="arrayImg[]" multiple="multiple"/><img class="thumb img-fix" src="', e.target.result,'" title="', escape(theFile.name), '"/>' ,'<i class="fa fa-times time " ></i></div>'].join('');
                         document.getElementById('previewImg').insertBefore(span, null); //chèn images vào span dựng sẵn có ID previewImg
 
                     };
