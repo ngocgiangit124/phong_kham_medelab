@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BenhNhan;
 use App\LichKham;
 use App\NhomBenh;
 use Illuminate\Http\Request;
@@ -111,10 +112,39 @@ class AjaxController extends Controller
                             </li>
                         </ul>
 
-                        <a href=\"admin/lichkham/chinhsua/{$lich->id}\" class=\"btn btn-primary btn-block\"><b>Chỉnh sửa</b></a>
+                        <a href=\"admin/lichkham/sua/{$lich->id}\" class=\"btn btn-primary btn-block\"><b>Chỉnh sửa</b></a>
                         <a href=\"admin/lichkham/xoa/{$lich->id}\" class=\"btn btn-primary btn-block\"><b>Xóa</b></a>";
-
     }
+    public function getXemBenhNhan($id)
+    {
+        $benhnhan =BenhNhan::find($id);
+        $ngaykham =Carbon::parse($benhnhan->ngaykham)->format('d/m/Y');
+        echo "  <h3 class=\"profile-username text-center\">Số hóa đơn: {$benhnhan->mahoadon}</h3>
 
+                        <ul class=\"list-group list-group-unbordered\">
+                            <li class=\"list-group-item\">
+                                <b>Họ tên :</b> <a class=\"pull-right\">{$benhnhan->benhnhan_ten}</a>
+                            </li>
+                            <li class=\"list-group-item\">
+                                <b>Giới Tính:</b> <a class=\"pull-right\">{$benhnhan->benhnhan_gioitinh}</a>
+                            </li>
+                             <li class=\"list-group - item\">
+                                <b>Tuổi:</b> <a class=\"pull - right\">{$benhnhan->benhnhan_tuoi}</a>
+                            </li>
 
+                            <li class=\"list-group-item\" >
+                                <b>Ngày khám :</b> <a class=\"pull-right\">$ngaykham</a>
+                            </li>
+                            <li class=\"list-group-item\" >
+                                <b>Số điện thoại :</b> <a class=\"pull-right\">{$benhnhan->benhnhan_sodienthoai}</a>
+                            </li>
+                            <li class=\"list-group-item\" >
+                                <b>Email :</b> <a class=\"pull-right\">{$benhnhan->benhnhan_email}</a>
+                            </li>
+                            <li class=\"list-group-item\" >
+                              <b>Quê :</b> <a class=\"pull-right\">{$benhnhan->benhnhan_que}</a>
+                            </li>
+                        </ul>
+                        <a href=\"bacsy/benhnhan/chitiet/{$benhnhan->id}\" class=\"btn btn-primary btn-block\"><b>Chi Tiết</b></a>";
+    }
 }

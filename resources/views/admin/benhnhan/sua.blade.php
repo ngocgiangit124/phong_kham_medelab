@@ -9,7 +9,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="admin"><i class="fa fa-dashboard"></i>Trang Chủ</a></li>
-            <li><a href="admin/benhnhan/them">Bệnh nhân</a></li>
+            <li><a href="admin/benhnhan/danhsach">Bệnh nhân</a></li>
             <li class="active">sửa</li>
         </ol>
     </section>
@@ -82,10 +82,13 @@
                               {{--//  <div class="box-footer fix-btn">--}}
                                     {{--<button type="submit" class="btn btn-warning btn-lg"><a href="admin/benhnhan/sua/benhan/{{$value->id}}">Chỉnh Sửa</a></button>--}}
                                 {{--</div>--}}
-                                <div class="box-footer fix-btn">
-                                    <button type="submit" class="btn btn-warning"><a href="admin/benhnhan/benhan/sua/{{$value->id}}">Chỉnh Sửa</a></button>
-                                    <button type="button" class="btn btn-warning"><a href="admin/benhnhan/benhan/xoa/{{$value->id}}">Xóa</a></button>
-                                </div>
+                                @if(Auth::check())
+
+                                    <div class="box-footer fix-btn" @if(Auth::user()->user_level == 2) hidden @endif >
+                                        <button type="submit" class="btn btn-warning"><a href="admin/benhnhan/benhan/sua/{{$value->id}}">Chỉnh Sửa</a></button>
+                                        <button type="button" class="btn btn-warning"><a href="admin/benhnhan/benhan/xoa/{{$value->id}}">Xóa</a></button>
+                                    </div>
+                                @endif
                                 <!-- END timeline item -->
                                 <li>
                                     <i class="fa fa-clock-o bg-gray"></i>
@@ -97,7 +100,13 @@
                 </div>
                 <!-- /.nav-tabs-custom -->
                 @endforeach
-                <div><a href="admin/benhnhan/them/benhan/{{$benhnhan->id}}"><button type="button" class="btn btn-primary"> Thêm bệnh án</button></a></div>
+                @if(Auth::check())
+                <div @if(Auth::user()->user_level == 2) hidden @endif>
+                    <a href="admin/benhnhan/them/benhan/{{$benhnhan->id}}">
+                        <button type="button" class="btn btn-primary"> Thêm bệnh án</button>
+                    </a>
+                </div>
+                @endif
             </div>
             <div class="col-md-4">
                     <div class="box box-warning">
@@ -155,12 +164,12 @@
                                     <input type="date" class="form-control" name="txtNgayKham" value="{{$benhnhan->ngaykham}}" id="inputError" placeholder=" ...">
                                 </div>
 
-
-
-                                <div class="box-footer">
+                                @if(Auth::check())
+                                <div class="box-footer" @if(Auth::user()->user_level == 2) hidden @endif>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                     <button type="reset" class="btn btn-primary">Reset</button>
                                 </div>
+                                @endif
                             </form>
                         </div>
                         <!-- /.end box-body -->

@@ -18,76 +18,102 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-9">
+                <div class="col-md-12">
 
-                <div class="box">
-                    @if(session('thongbao'))
-                        <div class="alert alert-success">
-                            {{session('thongbao')}}
+                    <!-- Profile Image -->
+                    <div class="box box-primary">
+                        <div class="box-body box-profile" id="">
+                            <div class="col-md-3 ">
+                                <b><p style="font-size: 16px;">Tìm kiếm theo ngày:</p></b>
+                            </div>
+                            <form action="admin/lichkham/timkiem1" method="post">
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                <div class="col-md-3 ">
+                                    <input type="date" value="" name="txtNgayKham" class="form-control">
+                                </div>
+                                <div class="col-md-2 ">
+                                    <button type="submit"   class="btn btn-block btn-info ">Tìm Kiếm</button>
+                                </div>
+                            </form>
+                            <div class="col-md-2">
+                                <a type="button" href="admin/lichkham/them"  class="btn btn-block btn-info ">Thêm lịch</a>
+                            </div>
                         </div>
-                    @endif
-                    <div class="box-header">
-                        <h3 class="box-title">Danh sách Chấp nhận khám</h3>
+                        <!-- /.box-body -->
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="example2" class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Tên người khám</th>
-                                <th>Bác sỹ</th>
-                                <th>Số điện thoại</th>
-                                <th>Chờ xử lý</th>
-                                <th>Xử lý Đạt</th>
-                                <th>Xử lý Hỏng</th>
-                                <th>Xem</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($lich as $l)
+                    <!-- /.box -->
+                </div>
+                <div class="col-md-12">
+                    <div class="box">
+                        @if(session('thongbao'))
+                            <div class="alert alert-success">
+                                {{session('thongbao')}}
+                            </div>
+                        @endif
+                        <div class="box-header">
+                            <h3 class="box-title">Danh sách ok</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example2" class="table table-bordered table-striped">
+                                <thead>
                                 <tr>
-                                    <td>{{$l->id}}</td>
-                                    <td>{{$l->ten_nguoikham}}</td>
-                                    <td>{{$l->bacsy->bacsy_ten}}</td>
-                                    <td>{{$l->dienthoai}}</td>
-                                    <td>
-                                        <form action="admin/lichkham/kiemtra/{{$l->id}}" method="post">
-                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                            <button @if($l->trangthai == 0)disabled="" @endif type="submit" value="0" name="txtTrangThai" class="btn btn-block btn-info ">Chờ</button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="admin/lichkham/kiemtra/{{$l->id}}" method="post">
-                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                            <button @if($l->trangthai == 1)disabled="" @endif type="submit" value="1" name="txtTrangThai" class="btn btn-block btn-info ">Chờ</button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="admin/lichkham/kiemtra/{{$l->id}}" method="post">
-                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                            <button @if($l->trangthai == 2)disabled="" @endif type="submit" value="2" name="txtTrangThai" class="btn btn-block btn-info ">Chờ</button>
-                                        </form>
-                                    </td>
-                                    <td><button type="button" for='{{$l->id}}' class="btn btn-block btn-info button">Xem</button></td>
+                                    <th>ID</th>
+                                    <th>Tên người khám</th>
+                                    <th>Bác sỹ</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Chờ xử lý</th>
+                                    <th>Xử lý Đạt</th>
+                                    <th>Xử lý Hỏng</th>
+                                    <th>Xem</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>ID</th>
-                                <th>Tên người khám</th>
-                                <th>Bác sỹ</th>
-                                <th>Số điện thoại</th>
-                                <th>Chờ xử lý</th>
-                                <th>Xử lý Đạt</th>
-                                <th>Xử lý Hỏng</th>
-                                <th>Xem</th>
-                                \
-                            </tr>
-                            </tfoot>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach($lich as $l)
+                                    <tr>
+                                        <td>{{$l->id}}</td>
+                                        <td>{{$l->ten_nguoikham}}</td>
+                                        <td>{{$l->bacsy->bacsy_ten}}</td>
+                                        <td>{{$l->dienthoai}}</td>
+                                        <td>
+                                            <form action="admin/lichkham/kiemtra/{{$l->id}}" method="post">
+                                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                                <button @if($l->trangthai == 0)disabled="" @endif type="submit" value="0" name="txtTrangThai" class="btn btn-block btn-info ">Wait</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="admin/lichkham/kiemtra/{{$l->id}}" method="post">
+                                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                                <button @if($l->trangthai == 1)disabled="" @endif type="submit" value="1" name="txtTrangThai" class="btn btn-block btn-info ">Ok</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="admin/lichkham/kiemtra/{{$l->id}}" method="post">
+                                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                                <button @if($l->trangthai == 2)disabled="" @endif type="submit" value="2" name="txtTrangThai" class="btn btn-block btn-info ">Cancel</button>
+                                            </form>
+                                        </td>
+                                        <td><button type="button" for='{{$l->id}}' class="btn btn-block btn-info button">Xem</button></td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên người khám</th>
+                                    <th>Bác sỹ</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Chờ xử lý</th>
+                                    <th>Xử lý Đạt</th>
+                                    <th>Xử lý Hỏng</th>
+                                    <th>Xem</th>
+                                    \
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
                     </div>
-                    <!-- /.box-body -->
                 </div>
                 <!-- /.box -->
             </div>

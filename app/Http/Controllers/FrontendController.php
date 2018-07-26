@@ -11,6 +11,8 @@ use App\LichKham;
 use App\Slide;
 use App\TinTuc;
 use App\ChuanDoan;
+use PDF;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -128,6 +130,19 @@ class FrontendController extends Controller
 
         $lich->save();
         return redirect()->back()->with('thongbao', 'bạn đã đăng ký thành công');
+
+    }
+
+    public function getPDF($id)
+    {
+        $benhnhan = BenhNhan::where('id','=',$id)->get();
+        $chuandoan = ChuanDoan::where('benhnhan_id','=',$id)->get();
+        $hinhanh = HinhAnh::select('hinhanh_ten','nhombenh_id')
+            ->where('benhnhan_id', '=', $id)
+            ->get();
+        $a['item'] = BenhNhan::select('mahoadon')->get();
+        $pdf = PDF::loadView('chitiet.pdf',['benhnhan'=>$benhnhan,'chuandoan'=>$chuandoan,'hinhanh'=>$hinhanh]);
+        return $pdf->download('pdf.pdf');
 
     }
 }

@@ -5,12 +5,12 @@
     <section class="content-header">
         <h1>
             Danh sách
-            <small> Đặt lịch đang chờ duyệt</small>
+            <small> Đặt lịch </small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="admin"><i class="fa fa-dashboard"></i>Trang Chủ</a></li>
-            <li><a href="admin/lichkham/danhsachwait">Lịch khám</a></li>
-            <li class="active">Danh sách chờ duyệt</li>
+            <li><a href="bacsy"><i class="fa fa-dashboard"></i>Trang Chủ</a></li>
+            <li><a href="bacsy/lichkham">Lịch khám</a></li>
+            <li class="active">Danh sách đặt lịch</li>
         </ol>
     </section>
 
@@ -26,7 +26,7 @@
                             <div class="col-md-3 ">
                                 <b><p style="font-size: 16px;">Tìm kiếm theo ngày:</p></b>
                             </div>
-                            <form action="admin/lichkham/timkiem0" method="post">
+                            <form action="bacsy/timkiem1" method="post">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <div class="col-md-3 ">
                                     <input type="date" value="" name="txtNgayKham" class="form-control">
@@ -59,10 +59,7 @@
                                     <th>ID</th>
                                     <th>Tên người khám</th>
                                     <th>Bác sỹ</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Chờ xử lý</th>
-                                    <th>Xử lý Đạt</th>
-                                    <th>Xử lý Hỏng</th>
+                                    <th>Ngày khám</th>
                                     <th>Xem</th>
                                 </tr>
                                 </thead>
@@ -72,25 +69,7 @@
                                         <td>{{$l->id}}</td>
                                         <td>{{$l->ten_nguoikham}}</td>
                                         <td>{{$l->bacsy->bacsy_ten}}</td>
-                                        <td>{{$l->dienthoai}}</td>
-                                        <td>
-                                            <form action="admin/lichkham/kiemtra/{{$l->id}}" method="post">
-                                                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                                <button @if($l->trangthai == 0)disabled="" @endif type="submit" value="0" name="txtTrangThai" class="btn btn-block btn-info ">Wait</button>
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form action="admin/lichkham/kiemtra/{{$l->id}}" method="post">
-                                                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                                <button @if($l->trangthai == 1)disabled="" @endif type="submit" value="1" name="txtTrangThai" class="btn btn-block btn-info ">Ok</button>
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form action="admin/lichkham/kiemtra/{{$l->id}}" method="post">
-                                                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                                <button @if($l->trangthai == 2)disabled="" @endif type="submit" value="2" name="txtTrangThai" class="btn btn-block btn-info ">Cancel</button>
-                                            </form>
-                                        </td>
+                                        <td>{{$l->ngaykham}}</td>
                                         <td><button type="button" for='{{$l->id}}' class="btn btn-block btn-info button">Xem</button></td>
                                     </tr>
                                 @endforeach
@@ -101,11 +80,7 @@
                                     <th>Tên người khám</th>
                                     <th>Bác sỹ</th>
                                     <th>Số điện thoại</th>
-                                    <th>Chờ xử lý</th>
-                                    <th>Xử lý Đạt</th>
-                                    <th>Xử lý Hỏng</th>
                                     <th>Xem</th>
-                                    \
                                 </tr>
                                 </tfoot>
                             </table>
@@ -143,10 +118,10 @@
                                 <b>Email :</b> <a class="pull-right">------------@gmail.com</a>
                             </li>
                             <li class="list-group-item" id="GT">
-                            <strong> Nội Dung</strong>
-                            <p class="text-muted">
-                                <span  class="" style="color: #000">Nội dung</span>
-                            </p>
+                                <strong> Nội Dung</strong>
+                                <p class="text-muted">
+                                    <span  class="" style="color: #000">Nội dung</span>
+                                </p>
                             </li>
                         </ul>
                         <a href="admin/lichkham/chinhsua/#" class="btn btn-primary btn-block" disabled=""><b>Chỉnh sửa</b></a>
@@ -178,7 +153,7 @@
         $(document).ready(function () {
             $(".button").click(function () {
                 var lich =$(this).attr('for');
-                $.get("admin/ajax/xemlich/"+lich,function (data) {
+                $.get("bacsy/ajax/xemlich/"+lich,function (data) {
                     $("#profile").html(data);
                 });
             });

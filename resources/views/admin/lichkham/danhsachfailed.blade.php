@@ -18,8 +18,31 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-9">
+                <div class="col-md-12">
 
-                <div class="box">
+                    <!-- Profile Image -->
+                    <div class="box box-primary">
+                        <div class="box-body box-profile" id="">
+                            <div class="col-md-3 ">
+                                <b><p style="font-size: 16px;">Tìm kiếm theo ngày:</p></b>
+                            </div>
+                            <form action="admin/lichkham/timkiem2" method="post">
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                <div class="col-md-3 ">
+                                    <input type="date" value="" name="txtNgayKham" class="form-control">
+                                </div>
+                                <div class="col-md-2 ">
+                                        <button type="submit"   class="btn btn-block btn-info ">Tìm Kiếm</button>
+                                </div>
+                            </form>
+
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <div class="col-md-12">
+                    <div class="box">
                     @if(session('thongbao'))
                         <div class="alert alert-success">
                             {{session('thongbao')}}
@@ -53,19 +76,19 @@
                                     <td>
                                         <form action="admin/lichkham/kiemtra/{{$l->id}}" method="post">
                                             <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                            <button @if($l->trangthai == 0)disabled="" @endif type="submit" value="0" name="txtTrangThai" class="btn btn-block btn-info ">Chờ</button>
+                                            <button @if($l->trangthai == 0)disabled="" @endif type="submit" value="0" name="txtTrangThai" class="btn btn-block btn-info ">Wait</button>
                                         </form>
                                     </td>
                                     <td>
                                         <form action="admin/lichkham/kiemtra/{{$l->id}}" method="post">
                                             <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                            <button @if($l->trangthai == 1)disabled="" @endif type="submit" value="1" name="txtTrangThai" class="btn btn-block btn-info ">Chờ</button>
+                                            <button @if($l->trangthai == 1)disabled="" @endif type="submit" value="1" name="txtTrangThai" class="btn btn-block btn-info ">OK</button>
                                         </form>
                                     </td>
                                     <td>
                                         <form action="admin/lichkham/kiemtra/{{$l->id}}" method="post">
                                             <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                            <button @if($l->trangthai == 2)disabled="" @endif type="submit" value="2" name="txtTrangThai" class="btn btn-block btn-info ">Chờ</button>
+                                            <button @if($l->trangthai == 2)disabled="" @endif type="submit" value="2" name="txtTrangThai" class="btn btn-block btn-info ">Cancel</button>
                                         </form>
                                     </td>
                                     <td><button type="button" for='{{$l->id}}' class="btn btn-block btn-info button">Xem</button></td>
@@ -88,6 +111,7 @@
                         </table>
                     </div>
                     <!-- /.box-body -->
+                </div>
                 </div>
                 <!-- /.box -->
             </div>

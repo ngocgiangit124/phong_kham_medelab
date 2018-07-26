@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\BacSy;
+use App\ChuanDoan;
+use App\ChuyenKhoa;
 use App\LichKham;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class LichKhamController extends Controller
 {
@@ -29,55 +33,38 @@ class LichKhamController extends Controller
     {
         $lich = LichKham::find($id);
         $chuyenkhoa = ChuyenKhoa::all();
-        return view('admin.bacsy.sua', ['lich' => $lich, 'chuyenkhoa' => $chuyenkhoa]);
+        $bacsy =BacSy::all();
+        return view('admin.lichkham.sua', ['lich' => $lich, 'chuyenkhoa' => $chuyenkhoa,'bacsy'=>$bacsy]);
     }
 
     public function postSua(Request $request, $id)
     {
-//        echo $request->Hinh;
-        $bacsy = BacSy::find($id);
 
         $this->validate($request, [
-            'Ten' => 'required|min:3|max:100',
-            'Khoa' => 'required'
-
+            'txtTen' => 'required|min:3|max:100',
+            'txtBacSy' =>' required',
+            'txtNgayKham'=>'required',
+            'txtSDT'=>'required',
+            'txtNoiDung'=>'required'
         ], [
-            'Ten.required' => 'Bạn chưa nhập Tên',
-            'Ten.min' => 'Tên ngừoi nhiều  hơn 3 ký tự',
-            'Ten.max' => 'Tên ngừoi phải ít hơn 100 ký tự',
-            'Khoa.required' => 'Bạn chưa nhập Tên'
-
+            'txtTen.required' => 'Bạn chưa nhập Tên',
+            'txtTen.min' => 'Tên ngừoi nhiều  hơn 3 ký tự',
+            'txtTen.max' => 'Tên ngừoi phải ít hơn 100 ký tự',
+            'txtBacSy.required' => 'Bạn chưa chọn Bác Sỹ',
+            'txtNgayKham.required' => 'Bạn chưa nhập ngày khám',
+            'txtSDT.required' => 'Bạn chưa nhập số điện thoại',
+            'txtNoiDung.required' => 'Bạn chưa nhập nội dung',
         ]);
-
-        $bacsy->bacsy_ten = $request->Ten;
-        $bacsy->khoa_id = $request->Khoa;
-        $bacsy->trangthai = $request->trangthai;
-        $bacsy->bacsy_gioithieu = $request->GioiThieu;
-        if ($request->hasFile('Hinh')) {
-            $file = $request->file('Hinh');
-            $duoi = $file->getClientOriginalExtension();
-            if ($duoi != 'jpg' && $duoi != 'png' && $duoi = 'jpeg') {
-                return redirect('admin/bacsy/sua/' . $id)->with('Bug', 'Lỗi file bạn chỉ được chọn ảnh có đuôi jpg,png,jpeg');
-            }
-            $name = $file->getClientOriginalName();
-            $Hinh = str_random(4) . "_" . $name;
-            while (file_exists("upload/bacsy/" . $Hinh)) {
-                $Hinh = str_random(4) . "_" . $name;
-            }
-            $file->move("upload/bacsy/", $Hinh);
-            if (($bacsy->bacsy_hinhanh) != "medelab.png") {
-                unlink("upload/bacsy/" . $bacsy->bacsy_hinhanh);
-            }
-            $bacsy->bacsy_hinhanh = $Hinh;
-        }
-        // else
-//        {
-//            $bacsy->bacsy_hinhanh="medelab.png";
-//        }
-        $bacsy->save();
-        //echo 'dathanh cong';
-        return redirect('admin/bacsy/sua/' . $id)->with('thongbao', 'Sửa thành công');
-
+        $lich = LichKham::find($id);
+        $lich->ten_nguoikham = $request->txtTen;
+        $lich->bacsy_id = $request->txtBacSy;
+        $lich->ngaykham = $request->txtNgayKham;
+        $lich->noidung = $request->txtNoiDung;
+        $lich->dienthoai =$request->txtSDT;
+        $lich->email_nguoikham=$request->txtEmail;
+        $lich->trangthai = $request->txtTrangThai;
+        $lich->save();
+        return redirect()->back()->with('thongbao', 'Sửa thành công');
     }
 
     public function getThongTin()
@@ -87,55 +74,41 @@ class LichKhamController extends Controller
         return view('admin.bacsy.thongtin', ['user' => $user]);
     }
 
-    public function getThem($id)
+    public function getThem()
     {
-        $user = User::find($id);
         $chuyenkhoa = ChuyenKhoa::all();
-        return view('admin.bacsy.them', ['user' => $user, 'chuyenkhoa' => $chuyenkhoa]);
+        return view('admin.lichkham.them',['chuyenkhoa'=>$chuyenkhoa]);
     }
 
-    public function postThem(Request $request, $id)
+    public function postThem(Request $request)
     {
 
         $this->validate($request, [
             'txtTen' => 'required|min:3|max:100',
-            'txtKhoa' => 'required'
-
+            'txtBacSy' =>' required',
+            'txtNgayKham'=>'required',
+            'txtSDT'=>'required',
+            'txtNoiDung'=>'required'
         ], [
             'txtTen.required' => 'Bạn chưa nhập Tên',
             'txtTen.min' => 'Tên ngừoi nhiều  hơn 3 ký tự',
             'txtTen.max' => 'Tên ngừoi phải ít hơn 100 ký tự',
-            'txtKhoa.required' => 'Bạn chưa nhập Tên'
-
+            'txtBacSy.required' => 'Bạn chưa chọn Bác Sỹ',
+            'txtNgayKham.required' => 'Bạn chưa nhập ngày khám',
+            'txtSDT.required' => 'Bạn chưa nhập số điện thoại',
+            'txtNoiDung.required' => 'Bạn chưa nhập nội dung',
         ]);
-        $bacsy = new BacSy;
-        $bacsy->bacsy_ten = $request->txtTen;
-        $bacsy->khoa_id = $request->txtKhoa;
-        $bacsy->user_id = $id;
-        $bacsy->bacsy_gioithieu = $request->txtGioiThieu;
-        $bacsy->trangthai = $request->trangthai;
-        if ($request->hasFile('txtHinh')) {
-            $file = $request->file('txtHinh');
-            $duoi = $file->getClientOriginalExtension();
-            if ($duoi != 'jpg' && $duoi != 'png' && $duoi = 'jpeg') {
-                return redirect('admin/bacsy/them/' . $id)->with('Bug', 'Lỗi file bạn chỉ được chọn ảnh có đuôi jpg,png,jpeg');
-            }
-            $name = $file->getClientOriginalName();
-            $Hinh = str_random(4) . "_" . $name;
-            while (file_exists("upload/bacsy/" . $Hinh)) {
-                $Hinh = str_random(4) . "_" . $name;
-            }
-            $file->move("upload/bacsy/", $Hinh);
-            //unlink("upload/bacsy/".$bacsy->bacsy_hinhanh);
-            $bacsy->bacsy_hinhanh = $Hinh;
-        } else {
-            $bacsy->bacsy_hinhanh = "medelab.png";
-        }
-        $bacsy->save();
-        //echo 'dathanh cong';
-        return redirect('admin/bacsy/thongtin')->with('thongbao', 'Sửa thành công');
+        $lich = new LichKham();
+        $lich->ten_nguoikham = $request->txtTen;
+        $lich->bacsy_id = $request->txtBacSy;
+        $lich->ngaykham = $request->txtNgayKham;
+        $lich->noidung = $request->txtNoiDung;
+        $lich->dienthoai =$request->txtSDT;
+        $lich->email_nguoikham=$request->txtEmail;
+        $lich->trangthai = $request->txtTrangThai;
+        $lich->save();
+        return redirect()->back()->with('thongbao', 'Thêm thành công');
     }
-
     public function getXoa($id)
     {
         $lich = LichKham::find($id);
@@ -144,7 +117,6 @@ class LichKhamController extends Controller
             return redirect()->back()->with('thongbao', 'Xóa thành công !');
         }
     }
-
     public function postKiemTra(Request $request, $id)
     {
         $lich = LichKham::find($id);
@@ -152,4 +124,29 @@ class LichKhamController extends Controller
         $lich->save();
         return redirect()->back();
     }
+    public function postTimKiemWait(Request $request)
+    {
+//        $ngaykham = Carbon::parse($request->txtNgayKham)->format('Y-m-d');
+
+        $lich = LichKham::where([['ngaykham','=',$request->txtNgayKham],['trangthai','=','0']])->get();
+        return view('admin.lichkham.danhsachwait', ['lich' => $lich]);
+
+    }
+    public function postTimKiemPassed(Request $request)
+    {
+//        $ngaykham = Carbon::parse($request->txtNgayKham)->format('Y-m-d');
+
+        $lich = LichKham::where([['ngaykham','=',$request->txtNgayKham],['trangthai','=','1']])->get();
+        return view('admin.lichkham.danhsachpassed', ['lich' => $lich]);
+
+    }
+    public function postTimKiemFailed(Request $request)
+    {
+          $ngaykham = $request->txtNgayKham;
+
+        $lich = LichKham::where([['ngaykham','=',$request->txtNgayKham],['trangthai','=','2']])->get();
+        return view('admin.lichkham.danhsachfailed', ['lich' => $lich,'ngaykham'=>$ngaykham]);
+
+    }
+
 }

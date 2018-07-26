@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\BenhNhan;
+use App\ChuanDoan;
+use App\HinhAnh;
+use App\LichKham;
 use DeepCopy\f001\B;
 use Illuminate\Http\Request;
 use App\BacSy;
 use App\ChuyenKhoa;
 use App\User;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class BacSyController extends Controller
@@ -158,5 +164,64 @@ class BacSyController extends Controller
         $bacsy ->trangthai = $request->txtTrangThai;
         $bacsy->save();
         return redirect()->back();
+    }
+    public function getLichKham()
+    {
+            $time = Carbon::now();
+//            echo $time->toDateString();
+           $id= Auth::user()->id;
+           $bacsy_id = BacSy::select('id')
+               ->where('user_id','=',$id)
+               ->get();
+           foreach ($bacsy_id as $value){
+               $lich=LichKham::where([['bacsy_id','=',$value->id],['ngaykham','>=',$time->toDateString()],['trangthai','=','1']])->get();
+           }
+                return view('admin.bacsy.lichkham',['lich'=>$lich]);
+    }
+    public function postTimKiemLichKham(Request $request)
+    {
+        $ngaykham = $request->txtNgayKham;
+        $id= Auth::user()->id;
+        $bacsy_id = BacSy::select('id')
+            ->where('user_id','=',$id)
+            ->get();
+        foreach ($bacsy_id as $value)
+        {
+//            $lich = LichKham::where('bacsy_id', '=', $value->id)->get();
+
+            $lich = LichKham::where([['ngaykham', '=', $request->txtNgayKham], ['trangthai', '=', '0'],['bacsy_id', '=', $value->id]])->get();
+        }
+        return view('admin.bacsy.lichkham', ['lich' => $lich,'ngaykham'=>$ngaykham]);
+    }
+    public function getBenhNhan()
+    {
+        $id= Auth::user()->id;
+        $bacsy_id = BacSy::select('id')->where('user_id','=',$id)->get();
+        foreach ($bacsy_id as $value){
+            $chuandoan=ChuanDoan::select('benhnhan_id')->where('bacsy_id','=',$value->id)->get();
+            echo $chuandoan;
+            foreach ($chuandoan as $item)
+            {
+                $benhnhan[$item->benhnhan_id] = BenhNhan::select('id','mahoadon','benhnhan_ten','benhnhan_sodienthoai','ngaykham')
+                    ->where('id','=',$item->benhnhan_id)
+                    ->get();
+            }
+        }
+//        foreach ($benhnhan as $a)
+//        {
+//            echo $a;
+//        }
+
+           return view('admin.bacsy.benhnhan',['benhnhan'=>$benhnhan,'chuandoan'=>$chuandoan]);
+    }
+    public function getChiTietBenhNhan($id)
+    {
+        $chuyenkhoa=ChuyenKhoa::all();
+        //$test=DB::table('comment');
+        $hinhanh=HinhAnh::where('benhnhan_id',$id)->get();
+        $chuandoan = ChuanDoan::where('benhnhan_id',$id)->get();
+        $benhnhan = BenhNhan::find($id);
+        return view('admin.benhnhan.sua',['benhnhan'=>$benhnhan,'chuyenkhoa'=>$chuyenkhoa,'hinhanh'=>$hinhanh,'chuandoan'=>$chuandoan]);
+
     }
 }

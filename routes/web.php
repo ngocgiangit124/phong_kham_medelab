@@ -123,6 +123,9 @@ Route::group(['prefix'=>'admin', 'middleware'=>'CheckLogin'],function ()
         Route::post('sua/{id}','LichKhamController@postSua');
         Route::get('xoa/{id}','LichKhamController@getXoa');
         Route::post('kiemtra/{id}','LichKhamController@postKiemTra');
+        Route::post('timkiem0','LichKhamController@postTimKiemWait');
+        Route::post('timkiem1','LichKhamController@postTimKiemPassed');
+        Route::post('timkiem2','LichKhamController@postTimKiemFailed');
     });
     Route::group(['prefix'=>'ajax'],function ()
     {
@@ -136,6 +139,15 @@ Route::group(['prefix'=>'admin', 'middleware'=>'CheckLogin'],function ()
 Route::group(['prefix'=>'bacsy', 'middleware'=>'BacSyMiddleware'],function ()
 {
     Route::get('','UserController@getHome');
+    Route::get('lichkham','BacSyController@getLichKham');
+    Route::get('benhnhan','BacSyController@getBenhNhan');
+    Route::get('benhnhan/chitiet/{id}','BacSyController@getChiTietBenhNhan');
+    Route::post('timkiem1','BacSyController@postTimKiemLichKham');
+    Route::group(['prefix'=>'ajax'],function ()
+    {
+        Route::get('xemlich/{id}','AjaxController@getLich');
+        Route::get('xembenhnhan/{id}','AjaxController@getXemBenhNhan');
+    });
 });
 
 Route::group(['prefix'=>'trangchu'],function ()
@@ -165,6 +177,7 @@ Route::group(['prefix'=>'trangchu'],function ()
     });
 
     Route::post('lichkham','FrontendController@postLichKham');
+    Route::get('pdf/{id}','FrontendController@getPDF');
 
     Route::get('lienhe',function()
     {

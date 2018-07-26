@@ -52,7 +52,7 @@
         @elseif($user=Auth::user()->user_level == 1)
             @include('admin.layout.menunv')
         @elseif($user=Auth::user()->user_level == 2)
-            @include('admin.layout.menunv')
+            @include('admin.layout.menubs')
         @endif
     @endif
     <!-- Content Wrapper. Contains page content -->

@@ -76,6 +76,18 @@
                     <li><a href="admin/nhombenh/them">Thêm</a></li>
                 </ul>
             </li>
+            <li class="treeview {{ ((Request::path() == 'admin/lichkham/danhsachwait')||(Request::path() == 'admin/lichkham/danhsachpassed') ||(Request::path() == 'admin/lichkham/danhsachfailed') )? 'active' : '' }}">
+                <a href="admin/nhombenh/danhsach"><i class="fa fa-dashboard"></i> <span>Danh sách đặt lịch</span>
+                    <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="admin/lichkham/danhsachwait">Danh sách wait</a></li>
+                    <li><a href="admin/lichkham/danhsachpassed">Danh sách passed</a></li>
+                    <li><a href="admin/lichkham/danhsachfailed">Danh sách failed</a></li>
+                </ul>
+            </li>
         </ul>
         <!-- /.sidebar-menu -->
     </section>

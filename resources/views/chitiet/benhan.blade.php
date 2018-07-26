@@ -45,8 +45,9 @@
                                                     </legend>
                                                 </fieldset>
                                             </div>
-                                            @endforeach
-                                            {{--<button type="button" class="btn btn-default  button-mycss">Xuất pdf</button>--}}
+
+                                                <a href="trangchu/pdf/{{$value->id}}"><button type="button" class="btn btn-default  button-mycss">Xuất pdf</button></a>
+                                        @endforeach
                                         </form>
                                         <!--End:Form-->
                                     </div>
