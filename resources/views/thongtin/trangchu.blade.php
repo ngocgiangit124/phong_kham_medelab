@@ -76,7 +76,6 @@
                             <div class="col-sm-4 ">
                                 <div class="form-group">
                                     <label for="room">Bác sĩ</label>
-                                    <div class="popover-icon" ><i class="fa fa-info-circle fa-lg"> </i> </div>
                                     <select class="form-control" name="txtBacSy" id="txtBacSy">
                                         <option selected="selected" disabled="disabled">Chọn Khoa Phòng Trước Khi Chọn Bác Sĩ</option>
                                     </select>
@@ -85,10 +84,6 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="">Ngày tháng khám</label>
-                                    <div class="popover-icon" > <i class="fa fa-info-circle fa-lg"> </i> </div>
-                                    {{--<select class="form-control" id="" name="id" style="display: none">--}}
-                                        {{--<option selected="selected" disabled="disabled">Chọn bác sĩ để biết lịch khảm khả dụng</option>--}}
-                                    {{--</select>--}}
                                     <input name="txtLich" type="date" id="checkin" value="" class="form-control hasDatepicker" placeholder="Đặt ngày khám">
                                 </div>
                             </div>
@@ -324,6 +319,4 @@
                 document.getElementById("fix-button").hidden = true;
             }, false);
     </script>
-
-
 @endsection

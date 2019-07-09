@@ -50,11 +50,9 @@ class NhomBenhController extends Controller
                 'txtTen.min'=>'Tên phải dài hơn 3 ký tự',
                 'txtTen.max'=>'Tên không ngắn hơn 100 ký tự'
             ]);
-        //$nhombenh = new NhomBenh();
         $nhombenh->nhombenh_ten=$request->txtTen;
         $nhombenh->khoa_id=$request->txtChuyenKhoa;
         $nhombenh ->save();
-        //echo 'dathanh cong';
         return redirect('admin/nhombenh/sua/'.$id)->with('thongbao','Sửa thành công');
     }
     public function getXoa($id)

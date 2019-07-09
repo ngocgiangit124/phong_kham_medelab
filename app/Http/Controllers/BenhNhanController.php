@@ -53,21 +53,17 @@ class BenhNhanController extends Controller
         $benhnhan->benhnhan_tuoi=$request->txtTuoi;
         $benhnhan->benhnhan_que=$request->txtDiaChi;
         $benhnhan->ngaykham=$request->txtNgayKham;
-
         $benhnhan ->save();
         if($benhnhan->mahoadon==$request->txtMaHoaDon){
             $id= $benhnhan->id;
             $benhnhan=BenhNhan::find($id);
         }
-
         //echo 'dathanh cong';
-       // return view('admin.benhnhan.themchuandoan',['chuyenkhoa'=>$chuyenkhoa,'bacsy'=>$bacsy,'nhombenh'=>$nhombenh,'benhnhan'=>$benhnhan])->with('thongbao','Thêm thành công hồ sơ');
         return redirect('admin/benhnhan/them/benhan/'.$id)->with('thongbao','Thêm thành công');
     }
     public function getSua($id)
     {
         $chuyenkhoa=ChuyenKhoa::all();
-        //$test=DB::table('comment');
         $hinhanh=HinhAnh::where('benhnhan_id',$id)->get();
         $chuandoan = ChuanDoan::where('benhnhan_id',$id)->get();
         $benhnhan = BenhNhan::find($id);
@@ -90,21 +86,25 @@ class BenhNhanController extends Controller
                 'txtTen.max'=>'Tên không ngắn hơn 100 ký tự',
                 'txtTuoi.required'=>'Bạn chưa nhập tên !'
             ]);
-
         $benhnhan->mahoadon=$request->txtMaHoaDon;
         $benhnhan->benhnhan_ten=$request->txtTen;
         $benhnhan->benhnhan_gioitinh=$request->txtGioiTinh;
         $benhnhan->benhnhan_tuoi=$request->txtTuoi;
         $benhnhan->benhnhan_que=$request->txtDiaChi;
         $benhnhan->ngaykham=$request->txtNgayKham;
-
         $benhnhan ->save();
         //echo 'dathanh cong';
         return redirect()->back()->with('thongbao','Sửa thành công');
     }
     public function getXoa($id)
     {
-        $benhnhan=BenhNhan::find($id);
+        $benhnhan = BenhNhan::find($id);
+        $check_benhan = ChuanDoan::where('id','=','$benhnhan')->get();
+        if($check_benhan)
+            {
+              return redirect()->back()->with('thongbao','Hãy xóa bệnh án trước');
+            }
+        echo "no oke";
         $benhnhan->delete();
         return redirect('admin/benhnhan/danhsach')->with('thongbao','Xóa Thành Công');
     }
@@ -222,6 +222,7 @@ class BenhNhanController extends Controller
         $hinhanh =HinhAnh::select('id','hinhanh_ten')->where([['nhombenh_id',$chuandoan->nhombenh_id],['benhnhan_id',$chuandoan->benhnhan_id]])->get();
         foreach($hinhanh as $value)
         {
+
             $tenImg=$value->hinhanh_ten;
             $localtion="upload/benhnhan/";
             $file = $localtion.$tenImg;
@@ -229,6 +230,7 @@ class BenhNhanController extends Controller
             {
                 unlink($file);
             }
+            $value->delete();
         }
         $delete = $chuandoan->delete();
         if($delete)
